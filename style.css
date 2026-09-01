@@ -62,10 +62,13 @@ main {
 
 main h1 {
     text-align: center;
-    font-size: 9rem;
+    font-size: clamp(2.2rem, 5.5vw, 4.8rem);
     font-weight: 900;
-    letter-spacing: 5px;
-    line-height: 1;
+    letter-spacing: 3px;
+    line-height: 1.05;
+    max-width: 18ch;
+    margin-left: auto;
+    margin-right: auto;
     background-image: linear-gradient(rgb(133, 133, 133), rgb(255, 255, 255));
     color: transparent;
     background-clip: text;
@@ -73,10 +76,13 @@ main h1 {
 
 main h2 {
     text-align: center;
-    font-size: 7.5rem;
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
     font-weight: 700;
-    letter-spacing: 5px;
-    line-height: 1;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    max-width: 16ch;
+    margin-left: auto;
+    margin-right: auto;
     background-image: linear-gradient(rgb(133, 133, 133), rgb(255, 255, 255));
     color: transparent;
     background-clip: text;
@@ -570,8 +576,8 @@ footer {
 
 @media (max-width: 1400px) {
     main h1 {
-        font-size: 6.3rem;
-        letter-spacing: 0;
+        font-size: clamp(1.8rem, 4.8vw, 3.6rem);
+        letter-spacing: 1px;
     }
 
 
@@ -709,7 +715,7 @@ footer {
     }
 
     main h2 {
-        font-size: 6rem;
+        font-size: clamp(1.4rem, 7vw, 2rem);
     }
 
     .logo {
