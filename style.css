@@ -265,6 +265,20 @@ main h2 {
     max-width: 30rem;
 }
 
+.card-text p {
+    margin: 0 0 1em;
+}
+
+.card-text p:last-child {
+    margin-bottom: 0;
+}
+
+.card-text-kicker {
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 0.75em;
+}
+
 .bento-grid .background-img {
     position: absolute;
     inset: -1% -1% -1% -1%;
