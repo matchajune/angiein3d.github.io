@@ -219,7 +219,14 @@ main h2 {
 }
 
 /* CARD SPECIFIC AREAS */
-    .intro { grid-area: intro; min-height: 300px;}
+    .intro {
+        grid-area: intro;
+        min-height: 300px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+    }
     .tech {grid-area: tech; min-height: 450px;}
     .time { grid-area: time; min-height: 220px;}
     .passion { grid-area: passion; min-height: 220px;}
@@ -288,18 +295,61 @@ main h2 {
     z-index: -1;
 }
 
+.intro-layout {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+    isolation: auto;
+    background: transparent;
+}
+
+.intro-copy {
+    flex: 1 1 50%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.intro-copy .card-text {
+    max-width: none;
+}
+
 .model-box {
-    position: absolute;
-    right: 5%;
-    top: -35%;
-    width: 30rem;
-    height: 30rem;
+    flex: 1 1 50%;
+    position: relative;
+    width: 0;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    isolation: auto;
+    background: transparent;
+    align-self: stretch;
 }
 
 .info-3D {
-    width: 150%;
-    height: 150%;
-    mix-blend-mode: lighten;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
+    background: transparent;
+    background-color: transparent;
+    isolation: auto;
+    mix-blend-mode: screen;
 }
   
 .bento-grid .skills-group {
@@ -623,11 +673,6 @@ footer {
         font-size: 0.8rem;
     }
 
-    .model-box {
-        right: 10%;
-        top: 18%;
-    }
-
     .intro {min-height: 700px;}
     .time {grid-area: time; min-height: 300px;}
 
@@ -680,10 +725,20 @@ footer {
         font-size: 3rem;
     }
 
+    .intro-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .intro-copy,
     .model-box {
-        right: -4%;
-        top: 27%;
-        scale: 0.7;
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .model-box {
+        width: 100%;
+        min-height: 16rem;
     }
 
     .projects-section {
@@ -743,11 +798,6 @@ footer {
     .contact-btn {
         padding: 0.4rem 1.5rem;
         font-size: 0.9rem;
-    }
-
-    .model-box {
-        right: 2%;
-        top: 27%;
     }
 
     footer h3 {
