@@ -9,21 +9,38 @@
     });
 
 
-    const video1 = document.getElementById('projectVideo1');
-    const video2 = document.getElementById('projectVideo2');
-    const video3 = document.getElementById('projectVideo3');
-    const video4 = document.getElementById('projectVideo4');
+    function playWhenReady(video) {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      const tryPlay = function () {
+        const playPromise = video.play();
+        if (playPromise && playPromise.catch) {
+          playPromise.catch(function () {});
+        }
+      };
+      if (video.readyState >= 2) {
+        tryPlay();
+      } else {
+        video.addEventListener('canplay', tryPlay, { once: true });
+        video.addEventListener('loadeddata', tryPlay, { once: true });
+      }
+      tryPlay();
+    }
 
-    const videoList =[video1, video2, video3, video4];
+    const allSiteVideos = document.querySelectorAll('video');
+    allSiteVideos.forEach(playWhenReady);
 
-    videoList.forEach (function(video){
-        video.addEventListener("mouseover", function(){
-            video.play()
-        })
-        video.addEventListener("mouseout", function(){
-        video.pause();
-    })
-    })
+    document.addEventListener('touchstart', function () {
+      allSiteVideos.forEach(playWhenReady);
+    }, { once: true, passive: true });
+
+    document.addEventListener('click', function () {
+      allSiteVideos.forEach(playWhenReady);
+    }, { once: true });
 
 
     // form handling
