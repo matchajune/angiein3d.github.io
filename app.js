@@ -43,32 +43,25 @@
     }, { once: true });
 
 
-    // form handling
+    // form handling: send via EmailJS, then show success and reset
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      // Show success message
-      document.getElementById('successMessage').style.display = 'block';
-      
-      // Reset form
-      this.reset();
-      
-      // Hide success message after 3 seconds
-      setTimeout(function() {
-        document.getElementById('successMessage').style.display = 'none';
-      }, 3000);
+      const form = this;
 
-    });
+      emailjs.sendForm("service_5buonrg", "template_5gqsi34", form).then(function() {
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
 
+        // Reset form
+        form.reset();
 
-    // Send mail
-    document.addEventListener("DOMContentLoaded", function () {
-      emailjs.init("9c9UABgvXx_XjFIfd"); 
-    
-      document.getElementById("contactForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-    
-        emailjs.sendForm("service_5buonrg", "template_5gqsi34", this);
+        // Hide success message after 3 seconds
+        setTimeout(function() {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 3000);
+      }, function(error) {
+        console.error('EmailJS send failed:', error);
+        alert('Sorry, your message could not be sent. Please email animaciond298@gmail.com directly.');
       });
     });
     
