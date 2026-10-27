@@ -48,7 +48,7 @@
       e.preventDefault();
       const form = this;
 
-      emailjs.sendForm("service_5buonrg", "template_5gqsi34", form).then(function() {
+      emailjs.sendForm("service_do1et99", "template_oklufvh", form).then(function() {
         // Show success message
         document.getElementById('successMessage').style.display = 'block';
 
