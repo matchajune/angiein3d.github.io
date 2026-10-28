@@ -93,3 +93,6 @@
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // keep the footer copyright year current
+    document.getElementById('year').textContent = new Date().getFullYear();
