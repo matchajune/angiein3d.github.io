@@ -175,7 +175,9 @@ main h2 {
 
 /* ABOUT SECTION */
 .about-section {
-    height: 95vh;
+    min-height: 95vh;
+    /* the cards slide in from offscreen; don't let that cause sideways scroll */
+    overflow-x: clip;
     width: 100%;
     margin-top: 20rem;
     display: flex;
@@ -196,7 +198,7 @@ main h2 {
 .bento-grid {
     position: relative;
     display: grid;
-    height: 90vh;
+    min-height: 90vh;
     width: 90%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
@@ -656,7 +658,6 @@ footer {
     .bento-grid {
         position: relative;
         display: grid;
-        height: 80vh;
         width: 100%;
         grid-template-columns: auto auto;
         grid-template-areas: 
@@ -684,7 +685,7 @@ footer {
     .time {grid-area: time; min-height: 300px;}
 
     .projects-section {
-        margin-top: 40rem;
+        margin-top: 10rem;
     }
 
     .slider .list .item {
@@ -715,6 +716,13 @@ footer {
     .bio {
         font-size: 0.8rem;
         max-width: 15rem;
+    }
+
+    .intro,
+    .tech,
+    .time,
+    .passion {
+        min-width: 0;
     }
 
     .bento-grid {
@@ -749,7 +757,7 @@ footer {
     }
 
     .projects-section {
-        margin-top: 100rem;
+        margin-top: 6rem;
     }
 
     .projects-section h3 {
