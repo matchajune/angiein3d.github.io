@@ -61,6 +61,11 @@
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = this;
+      const submitBtn = document.getElementById('submitBtn');
+
+      // block double submits while the message is sending
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
 
       emailjs.sendForm("service_do1et99", "template_oklufvh", form).then(function() {
         // Show success message
@@ -76,6 +81,9 @@
       }, function(error) {
         console.error('EmailJS send failed:', error);
         alert('Sorry, your message could not be sent. Please email animaciond298@gmail.com directly.');
+      }).finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
       });
     });
     
