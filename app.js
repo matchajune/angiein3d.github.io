@@ -32,15 +32,29 @@
     }
 
     const allSiteVideos = document.querySelectorAll('video');
-    allSiteVideos.forEach(playWhenReady);
 
-    document.addEventListener('touchstart', function () {
-      allSiteVideos.forEach(playWhenReady);
-    }, { once: true, passive: true });
+    // play videos only while they're on screen, so offscreen ones don't download
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playWhenReady(entry.target);
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { rootMargin: '200px' });
+    allSiteVideos.forEach(video => videoObserver.observe(video));
 
-    document.addEventListener('click', function () {
-      allSiteVideos.forEach(playWhenReady);
-    }, { once: true });
+    // retry on first interaction for browsers that block autoplay until then
+    function playVisibleVideos() {
+      allSiteVideos.forEach(video => {
+        const rect = video.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) playWhenReady(video);
+      });
+    }
+
+    document.addEventListener('touchstart', playVisibleVideos, { once: true, passive: true });
+    document.addEventListener('click', playVisibleVideos, { once: true });
 
 
     // form handling: send via EmailJS, then show success and reset
