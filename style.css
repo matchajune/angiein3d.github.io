@@ -518,7 +518,8 @@ main h2 {
     color: #7ce9e6;
 }
 
-.contact-item a {
+.contact-item a,
+.contact-item span {
     color: lightgray;
     text-decoration: none;
     transition: color 0.3s;
