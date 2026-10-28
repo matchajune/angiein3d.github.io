@@ -811,3 +811,20 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+/* respect the system "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+    .slider .list .item,
+    .scroll-down::before,
+    .scroll-down::after {
+        animation-play-state: paused !important;
+    }
+
+    .card,
+    .card:hover,
+    .slider .item:hover {
+        transition: none;
+        transform: none;
+        scale: none;
+    }
+}

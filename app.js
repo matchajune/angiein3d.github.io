@@ -90,7 +90,9 @@
     // header "Contact" and hero "CONTACT ME" buttons scroll to the contact section
     document.querySelectorAll('.contact-btn, .bento-grid .btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('contact').scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
       });
     });
 
